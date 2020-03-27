@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',  
     'rest_framework',
+    'djoser',
     'todo',
+    'echo',
+    'trackingAPI', 
 ]
 
 MIDDLEWARE = [
@@ -60,6 +64,28 @@ CORS_ORIGIN_WHITELIST = (
 
 ROOT_URLCONF = 'realtimeapp.urls'
 
+WSGI_APPLICATION = 'realtimeapp.wsgi.application'
+ASGI_APPLICATION = 'realtimeapp.routing.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
+        },
+        "ROUTING": "echo.routing.channel_routing",
+    },
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,7 +102,13 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'realtimeapp.wsgi.application'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 
 # Database
@@ -137,3 +169,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+CELERY_BROKER_URL = 'amqp://localhost'
