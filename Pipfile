@@ -10,6 +10,7 @@ channels = "*"
 channels-redis = "*"
 celery = "*"
 beautifulsoup4 = "*"
+psutil = "*"
 
 [requires]
 python_version = "3.6"

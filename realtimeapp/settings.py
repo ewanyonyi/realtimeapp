@@ -42,8 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'todo',
-    'echo',
-    'trackingAPI', 
+    'cpuUsage'
 ]
 
 MIDDLEWARE = [
@@ -69,21 +68,12 @@ ASGI_APPLICATION = 'realtimeapp.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            'hosts': [('localhost', 6379)],
         },
-    },
-}
-
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "asgi_redis.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-        },
-        "ROUTING": "echo.routing.channel_routing",
-    },
+        'ROUTING': 'realtimeapp.routing.channel_routing',
+    }
 }
 
 TEMPLATES = [
@@ -156,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
