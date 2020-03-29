@@ -25,7 +25,7 @@ SECRET_KEY = 'as3vz2^(ewbv#4@0hzr(@6-3x)rahj!kas!yj_$meoeyqlyeg5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0.','localhost']
 
 
 # Application definition
@@ -68,11 +68,10 @@ ASGI_APPLICATION = 'realtimeapp.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
             'hosts': [('localhost', 6379)],
         },
-        'ROUTING': 'realtimeapp.routing.channel_routing',
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
     }
 }
 

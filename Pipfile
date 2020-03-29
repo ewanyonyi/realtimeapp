@@ -11,6 +11,7 @@ channels-redis = "*"
 celery = "*"
 beautifulsoup4 = "*"
 psutil = "*"
+aprs-news = "*"
 
 [requires]
 python_version = "3.6"

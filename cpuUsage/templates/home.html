@@ -1,0 +1,30 @@
+{% load static %}
+<html>
+    <head>
+        <title>Real Time App</title>
+        <!-- <script type="text/javascript" src="{% static '/channels/js/websocketbridge.js' %}"></script> -->
+    </head>
+    <body>
+        <h1>Real Time App</h1>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const socket = new WebSocket('ws://localhost:8001/index/');
+                
+                socket.onopen = function ()  {
+	              //on connection, do something
+                  console.log('Connected');
+                  const msg = JSON.stringify({"test": "data"});
+                  socket.send(msg);
+                };
+
+                socket.onerror = function (error) {
+                  console.log('Error Logged: ' + error);
+                };
+
+                socket.onmessage = function (e) {
+                   console.log('Received From Server: ' + e.data);
+                };
+            })
+        </script>
+    </body>
+</html>
