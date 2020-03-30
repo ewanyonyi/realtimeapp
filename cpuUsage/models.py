@@ -5,5 +5,8 @@ class CPUdata(models.Model):
     usage = models.FloatField()
     time = models.DateTimeField() 
 
-    def __str__(self):
-        return self.frequency
+    # def __dir__(self):
+    #     return [self.frequency, self.usage, self.time]
+
+    # def __str__(self):
+    #     return self.frequency

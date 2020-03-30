@@ -1,30 +1,49 @@
 import json
-from channels.generic.websocket import AsyncWebsocketConsumer
+from time import sleep
+import datetime
+from channels.generic.websocket import JsonWebsocketConsumer
+# from channels.db import database_sync_to_async
 
-class CpuConsumer(AsyncWebsocketConsumer):
+from .models import CPUdata
+from .serializers import CPUdataSerializer
 
-    # async def websocket_connect(self, event):
-    #     await self.send({
-    #         "type": "websocket.accept"
-    #     })
+class CpuConsumer(JsonWebsocketConsumer):
 
-    # async def websocket_receive(self, event):
-    #     # Echo the received payload
-    #     await self.send({
-    #         "type": "websocket.send",
-    #         "text": event["text"]
-    #     })
+    def time_to_json(self, o):
+        if isinstance(o, datetime.datetime):
+            return o.__str__()
 
-    async def connect(self):
-        await self.accept()
+    # data = None
+    # @database_sync_to_async
+    # def get_name(self):
+    #     frequency = CPUdata.objects.all()[0].frequency
+    #     usage = CPUdata.objects.all()[0].usage 
+    #     time = CPUdata.objects.all()[0].time
 
-    async def disconnect(self, close_code):
-        print('disconnected')
+    #     data = {
+    #         "frequency": frequency,
+    #         "usage": usage,
+    #         "time": time,
+    #     }
 
-    async def receive(self, text_data):
-        text_data_json = json.loads(text_data)
-        message = text_data_json['message']
+    #     return data
 
-        await self.send(text_data=json.dumps({
-            'message': message
-        }))
+    
+    def connect(self):
+        self.accept()
+        frequency = CPUdata.objects.all()[0].frequency
+        usage = CPUdata.objects.all()[0].usage 
+        time = CPUdata.objects.all()[0].time
+
+        data = {
+            "frequency": frequency,
+            "usage": usage,
+            "time": time,
+        }
+
+        json_data = json.dumps(data, default = self.time_to_json)
+
+        while True:
+            sleep(5)
+            self.send_json({"data": json_data})
+     
