@@ -22,7 +22,9 @@
                 };
 
                 socket.onmessage = function (e) {
-                   console.log('Received From Server: ' + e.data);
+                    console.log(e);
+                   console.log(e.data);
+                   console.log(typeof(e.data));
                 };
             })
         </script>

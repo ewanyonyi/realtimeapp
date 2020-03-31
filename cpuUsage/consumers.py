@@ -37,13 +37,14 @@ class CpuConsumer(JsonWebsocketConsumer):
 
         data = {
             "frequency": frequency,
-            "usage": usage,
-            "time": time,
+            "usage": usage
         }
 
-        json_data = json.dumps(data, default = self.time_to_json)
+        # json_data = json.dumps(data, default = self.time_to_json)
 
         while True:
             sleep(5)
-            self.send_json({"data": json_data})
+            self.send_json({
+                "data": data
+            })
      
