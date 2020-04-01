@@ -31,20 +31,25 @@ class CpuConsumer(JsonWebsocketConsumer):
     
     def connect(self):
         self.accept()
-        frequency = CPUdata.objects.all()[0].frequency
-        usage = CPUdata.objects.all()[0].usage 
-        time = CPUdata.objects.all()[0].time
-
-        data = {
-            "frequency": frequency,
-            "usage": usage
-        }
-
-        # json_data = json.dumps(data, default = self.time_to_json)
-
+        
         while True:
             sleep(5)
+            
+            frequency = CPUdata.objects.all()[0].frequency
+            usage = CPUdata.objects.all()[0].usage 
+            time = CPUdata.objects.all()[0].time
+
+            data = {
+              "frequency": frequency,
+              "usage": usage,
+              "time": time.minute
+            }
+
+            # json_data = json.dumps(data, default = self.time_to_json)
             self.send_json({
                 "data": data
             })
-     
+    
+
+    def disconnect(self):
+        raise StopConsumer()
