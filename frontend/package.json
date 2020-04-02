@@ -1,0 +1,57 @@
+{
+  "name": "easyvlab",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.9.6",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "aphrodite": "^2.4.0",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "final-form": "^4.18.7",
+    "final-form-material-ui": "^0.3.0",
+    "material-table": "^1.57.2",
+    "mdbreact": "^4.25.4",
+    "nodemon": "^2.0.2",
+    "os-utils": "0.0.14",
+    "parcel": "^1.12.4",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0-beta.17",
+    "react-dom": "^16.13.1",
+    "react-final-form": "^6.3.5",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-transition-group": "^4.3.0",
+    "reactstrap": "^8.4.1",
+    "recharts": "^1.8.5",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "stream-chat": "^1.5.1",
+    "stream-chat-react": "^0.10.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
