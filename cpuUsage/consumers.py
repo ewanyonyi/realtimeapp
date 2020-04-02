@@ -33,7 +33,7 @@ class CpuConsumer(JsonWebsocketConsumer):
         self.accept()
         
         while True:
-            sleep(5)
+            sleep(15)
             
             frequency = CPUdata.objects.all()[0].frequency
             usage = CPUdata.objects.all()[0].usage 
