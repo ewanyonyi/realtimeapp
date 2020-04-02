@@ -1,2 +1,2 @@
 # realtimeapp
-This is a demo app of real-time technology using django and react
+This is a demo app of real-time websocket communications using django and react
