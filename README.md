@@ -60,7 +60,7 @@ pip install -r requirements.txt
 celery -A realtimeapp worker --loglevel=info
 ```
 
-## (c). Run The Server
+## (d). Run The Server
 
 ```console
 ./manage.py runserver 0.0.0.0:8001
